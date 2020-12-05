@@ -1,0 +1,63 @@
+{%  extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-12 text-center mt-3">
+            <h2>All You need for the game</h2>
+        </div>
+
+        <div class="col-12 p-2 text-center">
+            <a href="{% url 'category' 'Bats' %}">
+                <img src="{% static '/images/Bats.jpg' %}" width="1000px">
+            </a>
+        </div>
+
+        <div class="col-12 p-2 text-center">
+            <a href="{% url 'category' 'Balls' %}">
+                <img src="{% static '/images/Balls.jpg' %}" width="1000px">
+            </a>
+        </div>
+
+        <hr>
+
+        <div class="col-12 text-center mt-3">
+            <h2>Protective Gear</h2>
+        </div>
+
+        <div class="col-12 text-center mt-3">
+            <a href="{% url 'category' 'Safety Equipments' %}" class="mx-3">
+                <img src="{% static '/images/Helmets.jpg' %}" width="310px">
+            </a>
+
+            <a href="{% url 'category' 'Pads' %}"  class="mx-3">
+                <img src="{% static '/images/Pads.jpg' %}" width="310px">
+            </a>
+
+            <a href="{% url 'category' 'Gloves' %}"  class="mx-3">
+                <img src="{% static '/images/Gloves.jpg' %}" width="310px">
+            </a>
+
+        </div>
+
+
+        <div class="col-12 text-center mt-5">
+            <a href="{% url 'category' 'Kits' %}" class="mx-3">
+                <img src="{% static '/images/Sets.jpg' %}" width="1000px">
+            </a>
+        </div>
+
+
+
+
+
+
+    </div>
+
+</div>
+<br>
+
+{% endblock content %}

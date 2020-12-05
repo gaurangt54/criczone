@@ -1,0 +1,103 @@
+{%  extends 'accounts/main.html' %}
+{% block content %}
+{% load multiply %}
+{% load static %}
+<div class="row py-3 text-center text-light bg-secondary">
+    <div class="col-md-3">
+        <a class="btn btn-dark btn-lg" href="{% url 'shop' %}">&#x2190; Back to Shopping</a>
+    </div>
+
+    <div class="col-md-6 ">
+        <h1>Cart</h1>
+    </div>
+
+    <div class="col-md-3">
+        <a class="btn btn-info btn-lg" href="{% url 'checkout' %}">Checkout &#8594;</a>
+    </div>
+
+</div>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="total-orders">
+                <div class="card-header">
+                    <h5 class="card-title">Total Products</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        {{total_products}}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="orders-delivered">
+                <div class="card-header">
+                    <h5 class="card-title">Total Quantity</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{quantity}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Total Amount</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{amount}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                </tr>
+                {% for i in cart %}
+                <tr>
+                    <td><img src="{{i.product.image.url}}" alt="" height="50px" width=""></td>
+                    <td>{{i.product.name}}</td>
+                    <td>{{i.product.category}}</td>
+                    <td>{{i.product.price}}</td>
+                    <td>
+                        <a class="" href="{% url 'delete_cart' i.product.id %}">
+                            <img height="16px" src="{% static '/images/minus.png' %}" alt="">
+                        </a>&nbsp;&nbsp;
+                        {{i.quantity}}&nbsp;&nbsp;
+                        <a class="" href="{% url 'add_cart' i.product.id %}">
+                            <img height="16px" src="{% static '/images/plus.png' %}" alt="">
+                        </a>
+                    </td>
+                    <td>Rs. {% multiply i.quantity i.product.price %}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,72 @@
+{% load static %}
+<style>
+    #cart-total{
+	display: block;
+	text-align: center;
+	color:#fff;
+	background-color: rgb(28, 144, 173);
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	font-size: 13px;
+}
+
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    {% if request.user.is_staff %}
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static '/images/logo.png' %}" alt="" height="50px">
+    </a>
+    {% else %}
+    <a class="navbar-brand" href="{% url 'shop' %}">
+        <img src="{% static '/images/logo.png' %}" alt="" height="50px">
+    </a>
+    {% endif %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav">
+            {% if request.user.is_staff %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'products' %}">Products</a>
+            </li>
+            {% else %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Categories
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'category' 'Bats' %}">Bats</a>
+                    <a class="dropdown-item" href="{% url 'category' 'Balls' %}">Balls</a>
+                    <a class="dropdown-item" href="{% url 'category' 'Kits' %}">Kits</a>
+                    <a class="dropdown-item" href="{% url 'category' 'Pads' %}">Pads</a>
+                    <a class="dropdown-item" href="{% url 'category' 'Gloves' %}">Gloves</a>
+                    <a class="dropdown-item" href="{% url 'category' 'Safety Equipments' %}">Helmets</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'account' %}">My Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user-page' %}">My Orders</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    <span style="font-size: 18px; color: white; margin-right: 20px;">
+        Hello {{request.user}}, </span>
+    <span style="font-size: 18px; color: white; margin-right: 20px;">
+        <a href="{% url 'logout' %}">Logout</a></span>
+    {% if request.user.is_staff %}
+    {% else %}
+    <a href="{% url 'view_cart' %}">
+        <img id="cart-icon" height="25px" src="{% static 'images/cart.png' %}">
+    </a>
+    <p id="cart-total">{{quantity}}</p>
+    {% endif %}
+</nav>

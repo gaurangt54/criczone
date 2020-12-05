@@ -1,0 +1,22 @@
+{%  extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row mt-3 text-center">
+    {% for i in products %}
+    <div class="card" style="width:230px; float:left; margin:0 12px 20px 12px; ">
+        <div class="card-header text-light text-center mb-n2" style="background-color: #264653;"><h4>{{i.category}}</h4> </div>
+        <img class="card-img-top" src="{{i.image.url}}" width="230px" height="230px">
+        <div class="card-body text-center text-light my-n1"  style="background-color: #264653;">
+            <h5>
+                {{i.name}}<br>
+                &#x20B9;{{i.price}}<br>
+            </h5>
+            
+            <a class="btn " href="{% url 'add_cart' i.id %}" style="background-color:#90e0f0; ;">Add to Cart</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+
+{% endblock content %}

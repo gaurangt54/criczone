@@ -1,0 +1,43 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+{% load multiply %}
+
+<div class="row">
+    <div class="col-md py-3 text-center text-light bg-secondary">
+        <h1>My Orders</h1>
+    </div>
+</div>
+
+{% include 'accounts/status.html' %}
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>Product</th>
+                    <th>Date Ordered</th>
+                    <th>Status</th>
+                    <th>Product Price</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                </tr>
+
+                {% for order in orders %}
+
+                <tr>
+                    <td>{{order.product}}</td>
+                    <td>{{order.date_created}}</td>
+                    <td>{{order.status}}</td>
+                    <td>{{order.product.price}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>Rs. {% multiply order.quantity order.product.price %}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
