@@ -1,22 +1,41 @@
 {%  extends 'accounts/main.html' %}
 {% load static %}
 {% block content %}
+
+<div class="row py-3 text-center text-light bg-secondary">
+    
+    <div class="col-md-3 ">
+    </div>
+
+    <div class="col-md-6 ">
+        <h1>{{category}}</h1>
+    </div>
+
+    <div class="col-md-3 pt-2">
+        <form method="get">
+                {{ myFilter.form.sname}}
+            <button class="btn btn-sm btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+
+</div>
+
 <div class="row mt-3 text-center">
+    
     {% for i in products %}
-    <div class="card" style="width:230px; float:left; margin:0 12px 20px 12px; ">
-        <div class="card-header text-light text-center mb-n2" style="background-color: #264653;"><h4>{{i.category}}</h4> </div>
-        <img class="card-img-top" src="{{i.image.url}}" width="230px" height="230px">
-        <div class="card-body text-center text-light my-n1"  style="background-color: #264653;">
-            <h5>
-                {{i.name}}<br>
-                &#x20B9;{{i.price}}<br>
-            </h5>
-            
-            <a class="btn " href="{% url 'add_cart' i.id %}" style="background-color:#90e0f0; ;">Add to Cart</a>
-        </div>
+    <div class="col-3 py-3 px-5" >
+        <img src="{{i.image.url}}" height="250px" width="250px" vspace="10px">
+            <h2>{{i.name}}</h2>
+            <hr>
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'add_cart' i.id %}" 
+            style="display: inline-block; float: left">Add to Cart</a>
+
+            <h4 style="display: inline-block; float: right">&#x20B9;{{i.price}}</h4>
     </div>
     {% endfor %}
 </div>
+    
+
 <br>
 
 {% endblock content %}

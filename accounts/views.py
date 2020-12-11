@@ -4,7 +4,7 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from .models import *
-from .filters import OrderFilter
+from .filters import OrderFilter, ProductFilter
 from .decorators import *
 from .forms import *
 from django.contrib import messages
@@ -110,7 +110,10 @@ def category(request,pk):
     for i in cart:
         quantity += i.quantity
     products = Product.objects.filter(category=pk)
-    context = {'products': products, 'quantity': quantity}
+    myFilter = ProductFilter(request.GET, queryset=products)
+    products = myFilter.qs
+    context = {'products': products, 'quantity': quantity,
+               'category': pk, 'myFilter': myFilter}
     return render(request, "accounts/shop.html", context)
 
 @login_required(login_url='login')
