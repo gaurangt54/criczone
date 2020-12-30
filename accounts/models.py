@@ -37,7 +37,7 @@ class Product(models.Model):
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     description = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(default="profile1.png",null=True, blank=True)
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):

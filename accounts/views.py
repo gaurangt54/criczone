@@ -119,7 +119,7 @@ def category(request,pk):
 @login_required(login_url='login')
 @admin_only
 def home(request):
-    orders = Order.objects.all()
+    orders = Order.objects.all().order_by('-date_created')
     customers = Customer.objects.all()
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()

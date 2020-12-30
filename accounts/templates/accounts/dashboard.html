@@ -7,7 +7,7 @@
 <br>
 
 <div class="row">
-	<div class="col-md-5">
+	<div class="col-md-4">
 		<h5>CUSTOMERS:</h5>
 		<hr>
 		<div class="card card-body">
@@ -31,12 +31,13 @@
 		</div>
 	</div>
 
-	<div class="col-md-7">
-		<h5>LAST 5 ORDERS</h5>
+	<div class="col-md-8">
+		<h5>RECENT ORDERS</h5>
 		<hr>
 		<div class="card card-body">
 			<table class="table table-sm">
 				<tr>
+					<th>Customer</th>
 					<th>Product</th>
 					<th>Date Orderd</th>
 					<th>Status</th>
@@ -45,7 +46,7 @@
 				</tr>
 				{% for order in orders %}
 				<tr>
-					
+					<td>{{order.customer}}</td>
 					<td>{{order.product}}</td>
 					<td>{{order.date_created}}</td>
 					<td>{{order.status}}</td>
